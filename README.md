@@ -1,2 +1,0 @@
-# BenjaminPritchard.github.io
-my github.io page
