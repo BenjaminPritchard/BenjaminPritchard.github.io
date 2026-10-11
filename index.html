@@ -1,2 +1,1037 @@
-BenjaminPritchard.github.io
-my github.io page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benjamin Pritchard — Open Source Developer, Educator, Pianist & Writer</title>
+  <meta name="description" content="Personal site of Benjamin Pritchard: embedded firmware engineer specializing in embedded Linux, open source developer, teacher, pianist, writer, and yoga teacher.">
+  <style>
+    :root {
+      --color-canvas-default: #ffffff;
+      --color-canvas-subtle: #f6f8fa;
+      --color-canvas-inset: #f3f4f6;
+      --color-border-default: #d0d7de;
+      --color-border-muted: #e1e4e8;
+      --color-fg-default: #1f2328;
+      --color-fg-muted: #59636e;
+      --color-fg-subtle: #6e7781;
+      --color-accent-fg: #0969da;
+      --color-accent-emphasis: #0969da;
+      --color-badge-bg: #eff1f3;
+      --color-badge-border: #d0d7de;
+      --color-quote-border: #0969da;
+      --font-stack-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      --font-stack-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-stack-sans);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--color-fg-default);
+      background-color: var(--color-canvas-default);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--color-accent-fg);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code, kbd, pre, samp {
+      font-family: var(--font-stack-mono);
+      font-size: 12.5px;
+    }
+
+    code {
+      background-color: var(--color-badge-bg);
+      border: 1px solid var(--color-badge-border);
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #0f172a;
+    }
+
+    /* Layout structure */
+    .page-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+    }
+
+    /* Left Sidebar: "Theme with the list on the left" */
+    .sidebar {
+      width: 270px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 24px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      padding-right: 12px;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--color-border-default);
+      border-radius: 4px;
+    }
+
+    .profile-card {
+      border: 1px solid var(--color-border-default);
+      background: var(--color-canvas-subtle);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .profile-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--color-fg-default);
+    }
+
+    .profile-handle {
+      font-family: var(--font-stack-mono);
+      font-size: 12.5px;
+      color: var(--color-fg-muted);
+      margin-top: 2px;
+      margin-bottom: 12px;
+    }
+
+    .profile-spec {
+      display: inline-block;
+      font-family: var(--font-stack-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 12px;
+      background: #e6f0fa;
+      color: #0969da;
+      border: 1px solid #bdd5ea;
+      margin-bottom: 10px;
+    }
+
+    .profile-bio {
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .profile-meta-list {
+      list-style: none;
+      font-size: 12.5px;
+      color: var(--color-fg-muted);
+      border-top: 1px solid var(--color-border-muted);
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    .profile-meta-list li {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Left Nav / List */
+    .nav-header {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-fg-subtle);
+      margin: 14px 0 6px 4px;
+    }
+
+    .nav-list {
+      list-style: none;
+      border-left: 2px solid var(--color-border-muted);
+      margin-bottom: 18px;
+    }
+
+    .nav-list li a {
+      display: block;
+      padding: 4px 12px;
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .nav-list li a:hover {
+      color: var(--color-accent-fg);
+      border-left-color: var(--color-accent-fg);
+      background-color: var(--color-canvas-subtle);
+      text-decoration: none;
+    }
+
+    /* Main Content Area */
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Markdown-style Headings */
+    h1.page-title {
+      font-size: 1.85rem;
+      font-weight: 600;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-border-default);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    h2.section-heading {
+      font-size: 1.35rem;
+      font-weight: 600;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border-default);
+      margin-top: 36px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    h3.sub-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      line-height: 1.65;
+    }
+
+    .lead-box {
+      background: var(--color-canvas-subtle);
+      border: 1px solid var(--color-border-default);
+      border-left: 4px solid var(--color-accent-emphasis);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      font-size: 14.5px;
+    }
+
+    .lead-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Markdown-style HTML Tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 10px;
+      margin-bottom: 24px;
+      border-radius: 6px;
+      border: 1px solid var(--color-border-default);
+    }
+
+    table.md-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      line-height: 1.5;
+      text-align: left;
+      background: var(--color-canvas-default);
+    }
+
+    table.md-table th {
+      background-color: var(--color-canvas-subtle);
+      border-bottom: 2px solid var(--color-border-default);
+      border-right: 1px solid var(--color-border-default);
+      padding: 8px 12px;
+      font-weight: 600;
+      color: var(--color-fg-default);
+      white-space: nowrap;
+    }
+
+    table.md-table th:last-child {
+      border-right: none;
+    }
+
+    table.md-table td {
+      border-top: 1px solid var(--color-border-default);
+      border-right: 1px solid var(--color-border-default);
+      padding: 8px 12px;
+      vertical-align: top;
+      color: var(--color-fg-default);
+    }
+
+    table.md-table td:last-child {
+      border-right: none;
+    }
+
+    table.md-table tr:nth-child(2n) td {
+      background-color: var(--color-canvas-subtle);
+    }
+
+    table.md-table tr:hover td {
+      background-color: var(--color-canvas-inset);
+    }
+
+    /* Badges & Tags */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-stack-mono);
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: var(--color-badge-bg);
+      border: 1px solid var(--color-badge-border);
+      color: var(--color-fg-muted);
+      white-space: nowrap;
+    }
+
+    .tag-blue {
+      background: #ddf4ff;
+      border-color: #54aeff;
+      color: #0969da;
+    }
+
+    .tag-green {
+      background: #dafbe1;
+      border-color: #4ac26b;
+      color: #1a7f37;
+    }
+
+    .tag-purple {
+      background: #fbefff;
+      border-color: #d18ee2;
+      color: #8250df;
+    }
+
+    .tag-amber {
+      background: #fff8c5;
+      border-color: #e3b341;
+      color: #9a6700;
+    }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 3px solid var(--color-quote-border);
+      padding: 10px 16px;
+      background: var(--color-canvas-subtle);
+      border-radius: 0 4px 4px 0;
+      margin: 16px 0;
+      font-style: italic;
+      color: #334155;
+    }
+
+    /* Video player embed */
+    .video-card {
+      border: 1px solid var(--color-border-default);
+      background: var(--color-canvas-subtle);
+      border-radius: 6px;
+      padding: 16px;
+      margin: 16px 0 24px 0;
+      max-width: 760px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #000;
+      margin-bottom: 10px;
+      border: 1px solid var(--color-border-default);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-meta {
+      font-size: 13px;
+      color: var(--color-fg-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--color-border-default);
+      margin-top: 48px;
+      padding-top: 20px;
+      font-size: 12.5px;
+      color: var(--color-fg-subtle);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 880px) {
+      .page-container {
+        flex-direction: column;
+        padding: 20px 14px;
+        gap: 20px;
+      }
+      .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+      .nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        border-left: none;
+        gap: 6px;
+      }
+      .nav-list li a {
+        border-left: none;
+        background: var(--color-canvas-subtle);
+        border: 1px solid var(--color-border-default);
+        border-radius: 4px;
+        padding: 4px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-container">
+
+  <!-- ==================== LEFT COLUMN SIDEBAR ==================== -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="profile-name">Benjamin Pritchard</div>
+      <div class="profile-handle"><a href="https://github.com/BenjaminPritchard" target="_blank" rel="noopener">@BenjaminPritchard</a></div>
+      <div class="profile-spec">Embedded Firmware &amp; Linux</div>
+      <div class="profile-bio">
+        Open source software developer, embedded Linux systems engineer, teacher, classical pianist, writer, and certified yoga instructor.
+      </div>
+      <ul class="profile-meta-list">
+        <li>📍 Akron, Ohio</li>
+        <li>🎓 Elementary Ed. (WGU) &amp; U. of Akron</li>
+        <li>💻 Founder, Kundalini Software</li>
+        <li>🤝 NSF I-Corps &amp; No Starch Grantee</li>
+        <li>🧘 200hr YTT (Rishikesh) · 500hr YTT</li>
+      </ul>
+    </div>
+
+    <div class="nav-header">Navigation</div>
+    <ul class="nav-list">
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#embedded-linux">Embedded &amp; Linux</a></li>
+      <li><a href="#github-pages">GitHub.io Projects</a></li>
+      <li><a href="#open-source">Open Source Software</a></li>
+      <li><a href="#teaching">Teaching &amp; TEALS</a></li>
+      <li><a href="#piano-performances">Piano &amp; Performance</a></li>
+      <li><a href="#compositions">Compositions</a></li>
+      <li><a href="#writings">Writings &amp; Poetry</a></li>
+      <li><a href="#yoga">Yoga &amp; Mindfulness</a></li>
+      <li><a href="#india-sentiment">India Sentiment Video</a></li>
+    </ul>
+
+    <div class="nav-header">External Links</div>
+    <ul class="nav-list">
+      <li><a href="https://github.com/BenjaminPritchard" target="_blank" rel="noopener">GitHub Profile</a></li>
+      <li><a href="https://benjaminpritchard.github.io/bach-in-the-mirror/" target="_blank" rel="noopener">Bach In The Mirror</a></li>
+      <li><a href="https://benjaminpritchard.github.io/circle_modulation_1/" target="_blank" rel="noopener">Circle Modulation 1</a></li>
+      <li><a href="https://benjaminpritchard.github.io/scale_quiz/" target="_blank" rel="noopener">Scale Quiz</a></li>
+      <li><a href="https://benjaminpritchard.github.io/abc_notation_quiz/" target="_blank" rel="noopener">ABC Notation Quiz</a></li>
+    </ul>
+  </aside>
+
+  <!-- ==================== RIGHT COLUMN CONTENT ==================== -->
+  <main class="content">
+
+    <h1 class="page-title">Benjamin Pritchard</h1>
+
+    <div class="lead-box">
+      <p>
+        Welcome to my GitHub Pages portal. I am an <strong>open source software developer</strong> and <strong>embedded firmware engineer</strong> with a specialty in <strong>embedded Linux</strong>. Alongside engineering, I am a <strong>teacher</strong> and former Microsoft TEALS volunteer, an intermediate/advanced classical <strong>pianist and composer</strong>, an author of <strong>poetry, fiction, and essays</strong>, and a certified <strong>yoga teacher</strong>.
+      </p>
+    </div>
+
+    <!-- ----------------- SECTION: ABOUT ----------------- -->
+    <section id="about">
+      <h2 class="section-heading">About Me</h2>
+      <p>
+        I have spent over two decades building software and firmware systems, ranging from low-level microcontroller dynamometer controllers and embedded Linux daemons to educational music technology and high-performance data serialization libraries. I believe in software craft, open source transparency, and using technology to enrich human learning.
+      </p>
+      <p>
+        My work frequently lives at the cross-section of disciplines: uniting computer science with music pedagogy (synesthesia-based education and symmetrical piano mirroring), connecting embedded Linux audio with WebMIDI, and bringing mindfulness and flow states into software development. I am married, have a daughter, and live in Akron, Ohio.
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Primary Specialty</th>
+              <th>Key Focus Areas &amp; Tools</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Embedded &amp; Systems</strong></td>
+              <td>Embedded Linux &amp; Microcontroller Firmware</td>
+              <td><code>C</code>, <code>Go</code>, Embedded Linux, Cosmic C, HC16/ARM, Raspberry Pi, ALSA, Modbus RTU/TCP</td>
+            </tr>
+            <tr>
+              <td><strong>Open Source</strong></td>
+              <td>Libraries, Toolchains &amp; Audio Software</td>
+              <td>20+ GitHub repositories, Schemer encoding, WebMIDI, LevelDB/AOF state machines, Lilypond</td>
+            </tr>
+            <tr>
+              <td><strong>Education</strong></td>
+              <td>STEM &amp; Computer Science Pedagogy</td>
+              <td>Microsoft TEALS volunteer, Code Ninjas instructor, interactive web tools, elementary education</td>
+            </tr>
+            <tr>
+              <td><strong>Music &amp; Piano</strong></td>
+              <td>Classical Pianist &amp; Composer</td>
+              <td>Student of Nicholas Constantinidis, U. of Akron Composition, symmetrical score engines, kirtan</td>
+            </tr>
+            <tr>
+              <td><strong>Writing</strong></td>
+              <td>Poetry, Spiritual Fiction &amp; Essays</td>
+              <td>Mantic poetry, Waldorf pedagogy (WGU award), music analysis, patent drafting</td>
+            </tr>
+            <tr>
+              <td><strong>Yoga</strong></td>
+              <td>Hatha &amp; Nada Yoga Teacher</td>
+              <td>200hr YTT (Nada School of Yoga, Rishikesh, India), 500hr YTT (Spiritual Life Society, Hudson, OH)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: EMBEDDED & LINUX ----------------- -->
+    <section id="embedded-linux">
+      <h2 class="section-heading">Embedded Firmware &amp; Embedded Linux</h2>
+      <p>
+        My core engineering foundation is in <strong>embedded firmware development</strong> with a dedicated specialty in <strong>embedded Linux</strong>. Over nearly a decade at Mustang Advanced Engineering and subsequent consulting engagements, I engineered real-time measurement, data acquisition, and dynamometer control systems deployed worldwide across North America, Europe, and Asia.
+      </p>
+      <p>
+        My systems engineering work spans bare-metal and RTOS environments up through embedded Linux appliances—writing Linux kernel-interfacing daemons, ALSA audio drivers, custom hardware print-server daemons on ARM/Raspberry Pi boards, and industrial communication stacks.
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Technology / Protocol</th>
+              <th>Application &amp; Engineering Scope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Embedded Linux Daemons</strong></td>
+              <td>Linux systemd, ALSA RawMidi, POSIX C/Go</td>
+              <td>Custom Linux printer daemons on Raspberry Pi; ALSA raw MIDI kernel interfaces; POSIX IPC services</td>
+            </tr>
+            <tr>
+              <td><strong>Industrial Microcontrollers</strong></td>
+              <td>Cosmic C, Freescale/NXP HC16, ARM Cortex</td>
+              <td>Dynamometer closed-loop control systems, PID load-control loops, high-speed telemetry</td>
+            </tr>
+            <tr>
+              <td><strong>Industrial Protocols</strong></td>
+              <td>Modbus RTU / Modbus TCP, RS-485, CAN</td>
+              <td>Author of compact Modbus implementations (<code>nanoMODBUS</code>) for memory-constrained MCUs</td>
+            </tr>
+            <tr>
+              <td><strong>Embedded Key-Value &amp; State</strong></td>
+              <td>LevelDB, SQLite append-only logs, AOF</td>
+              <td>High-reliability logging engines and transaction-log state machines for edge appliances</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: GITHUB.IO PROJECTS ----------------- -->
+    <section id="github-pages">
+      <h2 class="section-heading">GitHub.io Interactive Projects</h2>
+      <p>
+        I host several interactive educational tools and music engines directly on GitHub Pages. These web applications are lean, fast-loading, and zero-overhead:
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Stack</th>
+              <th>Description</th>
+              <th>Live GitHub.io Site</th>
+              <th>Source Repo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bach In The Mirror</strong></td>
+              <td><span class="tag tag-blue">Lilypond</span> <span class="tag tag-purple">HTML5</span></td>
+              <td>Transposed and symmetrically-inverted editions of J.S. Bach's 15 Two-Part Inventions generated via the Mozart Transposition Engine.</td>
+              <td><a href="https://benjaminpritchard.github.io/bach-in-the-mirror/" target="_blank" rel="noopener">bach-in-the-mirror/</a></td>
+              <td><a href="https://github.com/BenjaminPritchard/bach-in-the-mirror" target="_blank" rel="noopener">Repo</a></td>
+            </tr>
+            <tr>
+              <td><strong>Circle Modulation 1</strong></td>
+              <td><span class="tag tag-green">JavaScript</span> <span class="tag tag-blue">Canvas</span></td>
+              <td>Interactive Circle of Fifths practice trainer and score visualizer designed to help students master harmonic modulations.</td>
+              <td><a href="https://benjaminpritchard.github.io/circle_modulation_1/" target="_blank" rel="noopener">circle_modulation_1/</a></td>
+              <td><a href="https://github.com/BenjaminPritchard/circle_modulation_1" target="_blank" rel="noopener">Repo</a></td>
+            </tr>
+            <tr>
+              <td><strong>Scale Quiz</strong></td>
+              <td><span class="tag tag-green">JavaScript</span> <span class="tag tag-amber">Web Applet</span></td>
+              <td>Interactive quiz applet for learning and drilling all major and minor scales, key signatures, and accidentals.</td>
+              <td><a href="https://benjaminpritchard.github.io/scale_quiz/" target="_blank" rel="noopener">scale_quiz/</a></td>
+              <td><a href="https://github.com/BenjaminPritchard/scale_quiz" target="_blank" rel="noopener">Repo</a></td>
+            </tr>
+            <tr>
+              <td><strong>ABC Notation Quiz</strong></td>
+              <td><span class="tag tag-green">JavaScript</span> <span class="tag tag-purple">ABCjs</span></td>
+              <td>Music theory learning applet to practice reading and writing the text-based ABC music notation format.</td>
+              <td><a href="https://benjaminpritchard.github.io/abc_notation_quiz/" target="_blank" rel="noopener">abc_notation_quiz/</a></td>
+              <td><a href="https://github.com/BenjaminPritchard/abc_notation_quiz" target="_blank" rel="noopener">Repo</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: OPEN SOURCE SOFTWARE ----------------- -->
+    <section id="open-source">
+      <h2 class="section-heading">Open Source Software &amp; Repositories</h2>
+      <p>
+        I have authored and contributed to dozens of open-source projects on GitHub, spanning systems utilities, music software, and data serialization engines. My work on the <em>Kundalini Piano Mirror</em> platform was supported by an <strong>NSF I-Corps grant</strong> (in conjunction with the University of Akron Research Foundation and Burton D. Morgan Foundation) and a <strong>No Starch Press Foundation grant</strong>.
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Repository</th>
+              <th>Language / Category</th>
+              <th>Description</th>
+              <th>GitHub Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>nanoMODBUS</code></td>
+              <td><span class="tag tag-blue">C</span> · Embedded</td>
+              <td>A compact, lightweight MODBUS RTU/TCP C library tailored for microcontrollers with tight RAM/ROM constraints.</td>
+              <td><a href="https://github.com/BenjaminPritchard/nanoMODBUS" target="_blank" rel="noopener">nanoMODBUS</a></td>
+            </tr>
+            <tr>
+              <td><code>KundaliniPianoMirrorLinux</code></td>
+              <td><span class="tag tag-blue">ANSI C</span> · Linux Audio</td>
+              <td>C codebase for the Kundalini Piano Mirror, providing real-time symmetrical key-remapping and MIDI transformation.</td>
+              <td><a href="https://github.com/BenjaminPritchard/KundaliniPianoMirrorLinux" target="_blank" rel="noopener">KundaliniPianoMirrorLinux</a></td>
+            </tr>
+            <tr>
+              <td><code>GoRAWMidi</code></td>
+              <td><span class="tag tag-purple">Go</span> · Linux ALSA</td>
+              <td>Go bindings for ALSA (Advanced Linux Sound Architecture) RawMidi interface on Linux systems.</td>
+              <td><a href="https://github.com/BenjaminPritchard/GoRAWMidi" target="_blank" rel="noopener">GoRAWMidi</a></td>
+            </tr>
+            <tr>
+              <td><code>js-PianoKeyboard</code></td>
+              <td><span class="tag tag-green">JavaScript</span> · UI</td>
+              <td>Clean JavaScript library to render an interactive 88-key piano keyboard directly onto an HTML5 canvas element.</td>
+              <td><a href="https://github.com/BenjaminPritchard/js-PianoKeyboard" target="_blank" rel="noopener">js-PianoKeyboard</a></td>
+            </tr>
+            <tr>
+              <td><code>webmidi-left-handed-piano</code></td>
+              <td><span class="tag tag-green">JavaScript</span> · WebMIDI</td>
+              <td>In-browser WebMIDI implementation of the left-handed piano mirror, letting any digital keyboard run in symmetrical mode.</td>
+              <td><a href="https://github.com/BenjaminPritchard/webmidi-left-handed-piano" target="_blank" rel="noopener">webmidi-left-handed-piano</a></td>
+            </tr>
+            <tr>
+              <td><code>hecate</code></td>
+              <td><span class="tag tag-blue">C</span> · CLI Utility</td>
+              <td><em>The Hex Editor From Hell!</em> Terminal-based binary hex editor optimized for quick file inspection and patching.</td>
+              <td><a href="https://github.com/BenjaminPritchard/hecate" target="_blank" rel="noopener">hecate</a></td>
+            </tr>
+            <tr>
+              <td><code>VanGoghFlowGTK3</code></td>
+              <td><span class="tag tag-blue">C</span> · GTK3 / Linux</td>
+              <td>GTK3 desktop utility that overlays screens with translucent, pulsating visual fields to induce psychological flow states.</td>
+              <td><a href="https://github.com/BenjaminPritchard/VanGoghFlowGTK3" target="_blank" rel="noopener">VanGoghFlowGTK3</a></td>
+            </tr>
+            <tr>
+              <td><code>schemer_js</code> / <code>schemerBenchmarks</code></td>
+              <td><span class="tag tag-purple">TypeScript</span> / <span class="tag tag-purple">Go</span></td>
+              <td>TypeScript encoder/decoder and Go benchmark suite for Schemer binary encoding vs. JSON, GOB, MessagePack, and XML.</td>
+              <td><a href="https://github.com/BenjaminPritchard/schemer_js" target="_blank" rel="noopener">schemer_js</a></td>
+            </tr>
+            <tr>
+              <td><code>sql_state_machine</code> &amp; <code>aof</code></td>
+              <td><span class="tag tag-purple">Go</span> · Storage</td>
+              <td>Reference implementations demonstrating append-only logs (AOF) and SQLite transaction logs as resilient state machines.</td>
+              <td><a href="https://github.com/BenjaminPritchard/sql_state_machine" target="_blank" rel="noopener">sql_state_machine</a></td>
+            </tr>
+            <tr>
+              <td><code>SimpleExist</code></td>
+              <td><span class="tag tag-green">JS</span> / App Engine</td>
+              <td>Tampermonkey userscript + Google App Engine backend to cross-reference and encourage contributions to Simple Wikipedia.</td>
+              <td><a href="https://github.com/BenjaminPritchard/SimpleExist" target="_blank" rel="noopener">SimpleExist</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: TEACHING & TEALS ----------------- -->
+    <section id="teaching">
+      <h2 class="section-heading">Teaching &amp; Microsoft TEALS</h2>
+      <p>
+        I view teaching as a genuine calling. Bringing computer science, music, and creative expression to young learners has been one of the most rewarding dimensions of my career:
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Role &amp; Initiative</th>
+              <th>Organization</th>
+              <th>Curriculum &amp; Pedagogical Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Microsoft TEALS Volunteer</strong></td>
+              <td>Promise Academy (Cleveland, OH)</td>
+              <td>
+                Volunteered with the Microsoft Philanthropies TEALS (Technology Education and Literacy in Schools) program to co-teach computer science in urban high schools, partnering with teachers to build durable CS curricula. Actively advocated expanding TEALS programs into Akron schools.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>STEM &amp; Coding Instructor</strong></td>
+              <td>Code Ninjas (Hudson, OH)</td>
+              <td>
+                Taught children ages 5–14 core programming in JavaScript, Lua, and C#. Guided hands-on engineering topics including 3D modeling with TinkerCAD and digital electronics circuits with Snap Circuits.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Ambidexterity Lab Volunteer</strong></td>
+              <td>Impact Academy (Canton, OH)</td>
+              <td>
+                Supported by a grant from the No Starch Press Foundation, brought the Kundalini Piano Mirror and symmetrical keyboard concepts to students to foster ambidexterity, novel motor coordination, and polyphonic music comprehension.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Author of Educational Software</strong></td>
+              <td>Independent / Web</td>
+              <td>
+                Created browser-based drills and trainers (<code>scale_quiz</code>, <code>circle_modulation_1</code>, <code>abc_notation_quiz</code>, <code>js-PianoKeyboard</code>) and beginner-friendly programming tutorials for students.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Elementary Education Studies</strong></td>
+              <td>Western Governors University</td>
+              <td>
+                Pursued a Bachelor of Arts in Elementary Education, authoring recognized research on the pedagogical and developmental impacts of Waldorf education.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: PIANIST & VIDEOS ----------------- -->
+    <section id="piano-performances">
+      <h2 class="section-heading">Pianist &amp; Performances</h2>
+      <p>
+        I am an intermediate/advanced classical pianist. I had the privilege of studying piano privately with Greek-American concert pianist <strong>Nicholas Constantinidis</strong> in Akron, who profoundly shaped my technique and musical understanding.
+      </p>
+      <p>
+        Below is a recording of an impromptu piano performance at the Steinway dealership:
+      </p>
+
+      <div class="video-card">
+        <h3 class="sub-heading" style="margin-top:0;">Impromptu Piano Playing at Steinway Cleveland (2018)</h3>
+        <p style="font-size:13px; color:var(--color-fg-muted); margin-bottom:10px;">
+          Playing through piano repertoire at the Steinway gallery in Cleveland, exploring touch, polyphonic voicing, and flow.
+        </p>
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/vXi3Am_hl_A" 
+            title="Benjamin Pritchard - Steinway Cleveland, 2018"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <span>Title: <em>Steinway Cleveland, 2018</em></span>
+          <span><a href="https://www.youtube.com/watch?v=vXi3Am_hl_A" target="_blank" rel="noopener">Watch directly on YouTube ↗</a></span>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Performance / Recording</th>
+              <th>Instruments &amp; Setting</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Steinway Cleveland Showcase</strong></td>
+              <td>Acoustic Grand Piano (Steinway Gallery)</td>
+              <td><a href="https://www.youtube.com/watch?v=vXi3Am_hl_A" target="_blank" rel="noopener">YouTube Video</a></td>
+            </tr>
+            <tr>
+              <td><strong>Bhakti vs. Kundalini Improvisation</strong></td>
+              <td>Piano improvisation with Josh</td>
+              <td><a href="https://www.youtube.com/watch?v=zZAfZ-ts3Hg" target="_blank" rel="noopener">YouTube Video</a></td>
+            </tr>
+            <tr>
+              <td><strong>Grand Fantasia on the Maha Mantra (Mvt. 3)</strong></td>
+              <td>Voice, Percussion, Piano, and Dance</td>
+              <td><a href="https://www.youtube.com/watch?v=bOVQQlfN6Sk" target="_blank" rel="noopener">YouTube Video</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: COMPOSITIONS ----------------- -->
+    <section id="compositions">
+      <h2 class="section-heading">Musical Compositions</h2>
+      <p>
+        At the University of Akron, I studied music composition under Dr. James Wilding. My compositions integrate classical diatonic counterpoint, sacred Hindu kirtan themes, and novel structural inversions for custom keyboard layouts:
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Composition</th>
+              <th>Instrumentation / Context</th>
+              <th>Stylistic &amp; Structural Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Grand Fantasia on the Maha Mantra</strong></td>
+              <td>Voice, Piano, Percussion, and Sacred Dance</td>
+              <td>Multi-movement participatory setting blending Indian kirtan call-and-response with classical piano elaboration.</td>
+            </tr>
+            <tr>
+              <td><strong>Original Diatonic Setting in C# Minor</strong></td>
+              <td>Solo Keyboard (MuseScore)</td>
+              <td>Composition Jury piece (U. of Akron Fall 2023). Descending diatonic line over C#m – F#m – B – C#m progression with a characteristic rhythmic motif.</td>
+            </tr>
+            <tr>
+              <td><strong>Maha Mantra Setting for Leader &amp; Chorus</strong></td>
+              <td>Vocal Leader, Chorus, Keyboard &amp; Percussion</td>
+              <td>8-bar modal progression (A–A–C–C–F–C–G–G) featuring antiphonal call-and-response vocal structures.</td>
+            </tr>
+            <tr>
+              <td><strong>Bach-In-The-Mirror Edition</strong></td>
+              <td>Two-Part Keyboard Scores (Lilypond)</td>
+              <td>Algorithmic transposition and symmetrical horizontal/vertical mirror inversion of all 15 J.S. Bach Inventions BWV 772–786.</td>
+            </tr>
+            <tr>
+              <td><strong>Kundalini Piano Mirror Firmware</strong></td>
+              <td>Algorithmic Real-Time MIDI Engine</td>
+              <td>Provisional patent-backed firmware platform mapping real-time bidirectional inversions and Lua-scripted harmonic voicing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: WRITINGS ----------------- -->
+    <section id="writings">
+      <h2 class="section-heading">Writings &amp; Essays</h2>
+      <p>
+        My writings encompass spiritual fiction, love and mantic poetry, academic educational research, and musical essays:
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Title / Work</th>
+              <th>Theme &amp; Subject</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Spiritual Fiction</strong></td>
+              <td><em>Lucky Camel Number 3: The Nectar of Devotion</em></td>
+              <td>Spiritual narrative exploring bhakti, grace, and inner transformation.</td>
+            </tr>
+            <tr>
+              <td><strong>Spiritual Fiction</strong></td>
+              <td><em>The Ascent, a short story in the form of a dream</em></td>
+              <td>Allegorical dream journey reflecting on higher consciousness.</td>
+            </tr>
+            <tr>
+              <td><strong>Spiritual Trilogy</strong></td>
+              <td><em>The Calling</em> · <em>The Awakening</em> · <em>The Activated Boy</em></td>
+              <td>Three-part series tracking personal spiritual realization, sadhana, and energy awakening.</td>
+            </tr>
+            <tr>
+              <td><strong>Family Fiction</strong></td>
+              <td><em>Granny’s Story</em></td>
+              <td>Heartfelt family reflection and personal memoir piece.</td>
+            </tr>
+            <tr>
+              <td><strong>Love Poetry</strong></td>
+              <td><em>The Tantra of Separation</em> · <em>Invitation to the Forever Dance</em> · <em>The Lover’s Reunion</em></td>
+              <td>Poetry written for my wife exploring sacred companionship and union.</td>
+            </tr>
+            <tr>
+              <td><strong>Mantic Poetry</strong></td>
+              <td><em>The Gates Were Opened</em> · <em>Kundalini</em> · <em>Please Hurry Along</em> · <em>Daring to Look</em> · <em>High Above</em> · <em>Cocreation’s Playground</em> · <em>The Bursting Dam</em></td>
+              <td>Meditative, visionary verse capturing mystical experiences, inner fire, and spontaneous insight.</td>
+            </tr>
+            <tr>
+              <td><strong>Misc Poetry &amp; Prose</strong></td>
+              <td><em>The River At Dusk</em> · <em>we found the stars tonight</em> · <em>The Invocation of The Present</em> · <em>Alone on the Trails at Night</em> · <em>Phone Slaves</em> · <em>Iterations of Ivan</em></td>
+              <td>Contemplative observations of nature, trail running, modern digital culture, and existence.</td>
+            </tr>
+            <tr>
+              <td><strong>Academic Paper</strong></td>
+              <td><em>The Beneficial Effects of Waldorf Education</em></td>
+              <td>Winner of the <strong>WGU Excellence Award</strong> for academic analysis of anthroposophical and developmental pedagogy.</td>
+            </tr>
+            <tr>
+              <td><strong>Music Essays</strong></td>
+              <td><em>Composition Jury Report</em> · <em>Reflection on the Overture to Akhnaten</em> (Philip Glass) · <em>Emanuel Ax Concert Review</em></td>
+              <td>University of Akron music analytical papers examining minimalism, counterpoint, and concert performance.</td>
+            </tr>
+            <tr>
+              <td><strong>Literary Analyses</strong></td>
+              <td><em>Abraham Lincoln / Gettysburg Address</em> · <em>Franz Kafka / The Fratricide</em></td>
+              <td>Critical textual and rhetorical analyses.</td>
+            </tr>
+            <tr>
+              <td><strong>Comic / Satire</strong></td>
+              <td><em>The Last Word in Politics</em></td>
+              <td>Collaborative illustrated comic strip created together with my wife.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: YOGA & MINDFULNESS ----------------- -->
+    <section id="yoga">
+      <h2 class="section-heading">Yoga Teacher &amp; Practitioner</h2>
+      <p>
+        I am a certified yoga teacher. In 2017, I spent a month at Swarg Ashram in <strong>Rishikesh, India</strong>, completing my <strong>200-hour Yoga Teacher Training (YTT)</strong> certification from the <strong>Nada School of Yoga</strong>. Rishikesh, along the banks of the Ganga in the Himalayan foothills, provided deep immersion in traditional Hatha yoga, Nada yoga (the yoga of sacred sound), and meditation.
+      </p>
+      <p>
+        Following my studies in India, I undertook my <strong>500-hour Hatha Yoga Teacher Training</strong> through the <strong>Spiritual Life Society and Yoga Center</strong> in Hudson, Ohio. The principles of yoga—mindfulness, breath control, and inner stillness—directly inform both my musical improvisations and my approach to writing software.
+      </p>
+
+      <div class="table-container">
+        <table class="md-table">
+          <thead>
+            <tr>
+              <th>Credential / Training</th>
+              <th>Institution &amp; Location</th>
+              <th>Focus Area</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>200-Hour YTT Certification</strong></td>
+              <td>Nada School of Yoga · Swarg Ashram, Rishikesh, India</td>
+              <td>Traditional Hatha Yoga, Nada Yoga (sacred vibration &amp; sound), Pranayama, and Meditation.</td>
+            </tr>
+            <tr>
+              <td><strong>500-Hour Advanced YTT</strong></td>
+              <td>The Spiritual Life Society &amp; Yoga Center · Hudson, Ohio</td>
+              <td>Advanced asana sequencing, philosophy, Patanjali's Yoga Sutras, and holistic alignment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ----------------- SECTION: INDIA SENTIMENT & CONCLUDING VIDEO ----------------- -->
+    <section id="india-sentiment">
+      <h2 class="section-heading">Returning from India: Oasis of Mercy / Ocean of Bliss</h2>
+      <p>
+        Upon returning to the United States after my intensive spiritual journey through Rishikesh and Northern India, I sought a way to express the profound spiritual sentiment and stillness I had experienced.
+      </p>
+      <p>
+        I created this video using my custom visualization compositing engine (<em>Van Gogh Flow</em>), paired with a contemplative poem dedicated to the universal ocean of spiritual freedom:
+      </p>
+
+      <blockquote>
+        “RamaKrishna is supreme Freedom<br>
+        an unfathomable ocean of eternal bliss<br>
+        enticingly beckoning all people<br>
+        to please find her<br>
+        and make her your own.”
+      </blockquote>
+
+      <div class="video-card">
+        <h3 class="sub-heading" style="margin-top:0;">Oasis of Mercy / Ocean of Bliss</h3>
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/01d5TQJhjt0" 
+            title="Oasis of Mercy / Ocean of Bliss - Benjamin Pritchard"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <span>Visualization: <em>Van Gogh Flow engine</em></span>
+          <span><a href="https://www.youtube.com/watch?v=01d5TQJhjt0" target="_blank" rel="noopener">Watch directly on YouTube ↗</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------- FOOTER ----------------- -->
+    <footer class="footer">
+      <div>
+        Hosted on <strong>GitHub Pages</strong> (<a href="https://github.com/BenjaminPritchard/BenjaminPritchard.github.io" target="_blank" rel="noopener">BenjaminPritchard.github.io</a>).
+      </div>
+      <div>
+        © Benjamin Pritchard. Content published under open and creative licenses.
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>
